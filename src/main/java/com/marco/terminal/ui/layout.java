@@ -8,16 +8,16 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class layout {
-    private final Terminal terminal = TerminalBuilder.terminal();
 
-    public layout() throws IOException {
-    }
-
-    public void asciiTextGen(String text) {
-        int width, height;
-        // Get the terminal width and height
-        width = terminal.getWidth();
-        height = terminal.getHeight();
+    // Function to generate ASCII Art
+    public void asciiTextGen(String text) throws IOException {
+        int width;
+        int height;
+        try (Terminal terminal = TerminalBuilder.terminal()) {
+            // Get the terminal width and height
+            width = terminal.getWidth();
+            height = terminal.getHeight();
+        }
         // In case width = 0, it will have default width
         if (width == 0) {
             width = 90;
@@ -46,5 +46,10 @@ public class layout {
 
             System.out.println(stringBuilder);
         }
+    }
+
+    // Function to build the frame
+    public void buildFrame(int[][] grid){
+
     }
 }

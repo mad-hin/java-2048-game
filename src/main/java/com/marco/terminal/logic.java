@@ -1,5 +1,7 @@
 package com.marco.terminal;
 
+import com.marco.terminal.ui.layout;
+
 import java.util.Scanner;
 
 import static java.lang.System.exit;
@@ -7,10 +9,13 @@ import static java.lang.System.exit;
 public class logic {
     // public variable
     public int[][] grid;
+    public int dimension;
 
     // private variable
     private final Scanner scanner = new Scanner(System.in);
-    private int dimension;
+
+    // Init other class
+    layout Layout = new layout();
 
     // get input message
     public String getInput() {
@@ -33,15 +38,16 @@ public class logic {
     }
 
     // Exit Game
-    public void exitGame() {
+    private void exitGame() {
         outPutMessage("Thank you for playing the game");
         exit(0);
     }
 
     // Game over
-    public void gameover() {
+    private void gameover() {
         gameOverLoop:
         while (true) {
+            outPutMessage("Game Over, restart with current mode? [Y/n]");
             String s = getInput();
             switch (s) {
                 case "y", "Y", "" -> {
@@ -57,7 +63,8 @@ public class logic {
         }
     }
 
-    public void changeOrExit() {
+    // Let the user decide change game mode or exit
+    private void changeOrExit() {
         changeOrExitLoop:
         while (true) {
             outPutMessage("[C]hange game mode, [E]xit game (Default C)");
@@ -76,6 +83,7 @@ public class logic {
         }
     }
 
+    // choose the game mode (2x2, 4x4 or 8x8)
     public void chooseGameMode() {
         loop:
         while (true) {
@@ -85,14 +93,17 @@ public class logic {
             switch (input) {
                 case "1" -> {
                     creatGrid(2);
+                    Layout.buildFrame(grid);
                     break loop;
                 }
                 case "2" -> {
                     creatGrid(4);
+                    Layout.buildFrame(grid);
                     break loop;
                 }
                 case "3" -> {
                     creatGrid(8);
+                    Layout.buildFrame(grid);
                     break loop;
                 }
                 case "e", "E" -> exitGame();
