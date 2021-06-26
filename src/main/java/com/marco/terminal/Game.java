@@ -17,7 +17,7 @@ public class Game {
 
     public Game() throws IOException {
         welcome();
-        Layout.init();
+        Logic.chooseGameMode();
     }
 
     private void welcome() throws IOException {
