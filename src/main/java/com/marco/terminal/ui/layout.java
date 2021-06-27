@@ -50,6 +50,6 @@ public class layout {
 
     // Function to build the frame
     public void buildFrame(int[][] grid){
-
+        // TODO draw the grid on console
     }
 }

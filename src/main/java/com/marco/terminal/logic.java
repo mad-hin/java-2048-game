@@ -1,5 +1,6 @@
 package com.marco.terminal;
 
+import com.marco.terminal.ui.layout;
 import com.marco.terminal.ui.menu;
 
 import java.util.Scanner;
@@ -9,6 +10,7 @@ import static java.lang.System.exit;
 public class logic {
     // Init other class
     menu Menu = new menu();
+    layout Layout = new layout();
 
     // public variable
     public int[][] grid;
@@ -26,10 +28,10 @@ public class logic {
     public void creatGrid(int size) {
         dimension = size;
         switch (size) {
-            case 2 -> grid = new int[2][2];
             case 4 -> grid = new int[4][4];
             case 8 -> grid = new int[8][8];
         }
+        startGame();
     }
 
     // output message
@@ -64,7 +66,26 @@ public class logic {
     }
 
     // Assign random number to the grid
-    public void assignNumber(int[][] grid){
-        int random = (int) (Math.random() * (grid.length * grid.length));
+    public void assignNumber(int[][] grid) {
+        int assignPlace = (int) (Math.random() * (grid.length * grid.length));
+
+    }
+
+    // Start game
+    public void startGame() {
+        while (!isGameOver()){
+            assignNumber(grid);
+            Layout.buildFrame(grid);
+        }
+
+        if(isGameOver()){
+            gameover();
+        }
+    }
+
+    // check game over
+    private boolean isGameOver(){
+        // TODO detect is the game over
+        return false;
     }
 }
