@@ -1,15 +1,16 @@
 package com.marco.terminal;
 
 import com.marco.terminal.ui.layout;
+import com.marco.terminal.ui.menu;
 
 import java.io.IOException;
 
 public class Game {
 
-    // Init layout class here
+    // Init other class
     layout Layout = new layout();
-    // Init logic class in here
     logic Logic = new logic();
+    menu Menu = new menu();
 
     public static void main(String[] args) throws IOException {
         new Game();
@@ -17,7 +18,7 @@ public class Game {
 
     public Game() throws IOException {
         welcome();
-        Logic.chooseGameMode();
+        Menu.chooseGameMode();
     }
 
     private void welcome() throws IOException {
