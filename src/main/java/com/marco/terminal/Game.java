@@ -1,7 +1,8 @@
 package com.marco.terminal;
 
+import com.marco.terminal.gameLogic.InputAndOutput;
 import com.marco.terminal.ui.layout;
-import com.marco.terminal.ui.menu;
+import com.marco.terminal.ui.Menu;
 
 import java.io.IOException;
 
@@ -9,8 +10,8 @@ public class Game {
 
     // Init other class
     layout Layout = new layout();
-    logic Logic = new logic();
-    menu Menu = new menu();
+    Menu menu  = new Menu();
+    InputAndOutput inputAndOutput=new InputAndOutput();
 
     public static void main(String[] args) throws IOException {
         new Game();
@@ -18,7 +19,7 @@ public class Game {
 
     public Game() throws IOException {
         welcome();
-        Menu.chooseGameMode();
+        menu.chooseGameMode();
     }
 
     private void welcome() throws IOException {
@@ -29,6 +30,6 @@ public class Game {
             throw new IOException(e);
         }
         // Welcome message
-        Logic.outPutMessage("Welcome to the terminal version 2048");
+        inputAndOutput.outPutMessage("Welcome to the terminal version 2048");
     }
 }

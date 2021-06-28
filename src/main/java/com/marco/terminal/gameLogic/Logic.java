@@ -1,28 +1,18 @@
-package com.marco.terminal;
+package com.marco.terminal.gameLogic;
 
 import com.marco.terminal.ui.layout;
-import com.marco.terminal.ui.menu;
-
-import java.util.Scanner;
+import com.marco.terminal.ui.Menu;
 
 import static java.lang.System.exit;
 
-public class logic {
+public class Logic {
     // Init other class
-    menu Menu = new menu();
     layout Layout = new layout();
+    InputAndOutput inputAndOutput = new InputAndOutput();
 
     // public variable
     public int[][] grid;
     public int dimension;
-
-    // private variable
-    private final Scanner scanner = new Scanner(System.in);
-
-    // get input message
-    public String getInput() {
-        return scanner.nextLine();
-    }
 
     // create the grid for the game
     public void creatGrid(int size) {
@@ -34,33 +24,29 @@ public class logic {
         startGame();
     }
 
-    // output message
-    public void outPutMessage(String msg) {
-        System.out.println(msg);
-    }
-
     // Exit Game
     public void exitGame() {
-        outPutMessage("Thank you for playing the game");
+        inputAndOutput.outPutMessage("Thank you for playing the game");
         exit(0);
     }
 
     // Game over
     private void gameover() {
+        Menu menu = new Menu();
         gameOverLoop:
         while (true) {
-            outPutMessage("Game Over, restart with current mode? [Y/n]");
-            String s = getInput();
+            inputAndOutput.outPutMessage("Game Over, restart with current mode? [Y/n]");
+            String s = inputAndOutput.getInput();
             switch (s) {
                 case "y", "Y", "" -> {
                     creatGrid(dimension);
                     break gameOverLoop;
                 }
                 case "n", "N" -> {
-                    Menu.changeOrExit();
+                    menu.changeOrExit();
                     break gameOverLoop;
                 }
-                default -> outPutMessage("No such command, please re-enter the correct command");
+                default -> inputAndOutput.outPutMessage("No such command, please re-enter the correct command");
             }
         }
     }
