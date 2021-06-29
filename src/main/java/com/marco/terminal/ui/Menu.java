@@ -3,6 +3,8 @@ package com.marco.terminal.ui;
 import com.marco.terminal.gameLogic.InputAndOutput;
 import com.marco.terminal.gameLogic.Logic;
 
+import static java.lang.System.exit;
+
 public class Menu {
     // Init other class
     InputAndOutput inputAndOutput = new InputAndOutput();
@@ -24,7 +26,7 @@ public class Menu {
                     logic.creatGrid(8);
                     break loop;
                 }
-                case "e", "E" -> logic.exitGame();
+                case "e", "E" -> exitGame();
                 case "h", "H" -> helpMessage();
                 default -> inputAndOutput.outPutMessage("No such command, please re-enter the correct command");
             }
@@ -43,7 +45,7 @@ public class Menu {
                     break changeOrExitLoop;
                 }
                 case "e", "E" -> {
-                    logic.exitGame();
+                    exitGame();
                     break changeOrExitLoop;
                 }
                 default -> inputAndOutput.outPutMessage("No such command, please re-enter the correct command");
@@ -59,5 +61,31 @@ public class Menu {
         inputAndOutput.outPutMessage("HOW TO WIN AND LOSE");
         inputAndOutput.outPutMessage("WIN: Add the tiles up to reach 2048");
         inputAndOutput.outPutMessage("LOSE: If there are no any possible movement, you will lose.");
+    }
+    
+    // Exit Game
+    public void exitGame() {
+        inputAndOutput.outPutMessage("Thank you for playing the game");
+        exit(0);
+    }
+
+    // Game over
+    public void gameover() {
+        gameOverLoop:
+        while (true) {
+            inputAndOutput.outPutMessage("Game Over, restart with current mode? [Y/n]");
+            String s = inputAndOutput.getInput();
+            switch (s) {
+                case "y", "Y", "" -> {
+                    logic.creatGrid(logic.dimension);
+                    break gameOverLoop;
+                }
+                case "n", "N" -> {
+                    changeOrExit();
+                    break gameOverLoop;
+                }
+                default -> inputAndOutput.outPutMessage("No such command, please re-enter the correct command");
+            }
+        }
     }
 }
