@@ -2,6 +2,9 @@ package com.marco.terminal.gameLogic;
 
 import java.util.Scanner;
 
+/**
+ * This class is for input and output
+ */
 public class InputAndOutput {
     // private variable
     private final Scanner scanner = new Scanner(System.in);

@@ -1,15 +1,18 @@
 package com.marco.terminal;
 
 import com.marco.terminal.gameLogic.InputAndOutput;
-import com.marco.terminal.ui.layout;
+import com.marco.terminal.ui.Layout;
 import com.marco.terminal.ui.Menu;
 
 import java.io.IOException;
 
+/**
+ * The start up class
+ */
 public class Game {
 
     // Init other class
-    layout Layout = new layout();
+    com.marco.terminal.ui.Layout layout = new Layout();
     Menu menu  = new Menu();
     InputAndOutput inputAndOutput=new InputAndOutput();
 
@@ -25,7 +28,7 @@ public class Game {
     private void welcome() throws IOException {
         try {
             // Generate the ASCII Art Text of 2048
-            Layout.asciiTextGen("2048");
+            layout.asciiTextGen("2048");
         } catch (Exception e) {
             throw new IOException(e);
         }

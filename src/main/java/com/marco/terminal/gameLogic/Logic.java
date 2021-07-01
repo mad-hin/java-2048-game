@@ -1,11 +1,14 @@
 package com.marco.terminal.gameLogic;
 
 import com.marco.terminal.ui.Menu;
-import com.marco.terminal.ui.layout;
+import com.marco.terminal.ui.Layout;
 
+/**
+ * This is a class to handle the game's initial and check is the game over
+ */
 public class Logic {
     // Init other class
-    layout Layout = new layout();
+    Layout Layout = new Layout();
 
     // public variable
     public int[][] grid;
@@ -52,15 +55,8 @@ public class Logic {
 
     // Start game
     public void startGame() {
-        while (!isGameOver()) {
-            assignNumber(grid);
-            Layout.buildFrame(grid);
-        }
-
-        if (isGameOver()) {
-            Menu menu = new Menu();
-            menu.gameover();
-        }
+        assignNumber(grid);
+        gamePlaying();
     }
 
     // check game over
@@ -126,5 +122,20 @@ public class Logic {
             }
         }
         return false;
+    }
+
+    /**
+     * function to play the game after start up the game
+     */
+    private void gamePlaying() {
+        assignNumber(grid);
+        Layout.buildFrame(grid);
+
+        if (isGameOver()) {
+            Menu menu = new Menu();
+            menu.gameover();
+        } else {
+            gamePlaying();
+        }
     }
 }

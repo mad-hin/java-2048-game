@@ -5,6 +5,9 @@ import com.marco.terminal.gameLogic.Logic;
 
 import static java.lang.System.exit;
 
+/**
+ * This class is for the menu for the user to choose in the game
+ */
 public class Menu {
     // Init other class
     InputAndOutput inputAndOutput = new InputAndOutput();

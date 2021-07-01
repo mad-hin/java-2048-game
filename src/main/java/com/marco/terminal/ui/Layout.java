@@ -7,7 +7,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class layout {
+/**
+ * This class is for the output view
+ */
+public class Layout {
 
     // Function to generate ASCII Art
     public void asciiTextGen(String text) throws IOException {
