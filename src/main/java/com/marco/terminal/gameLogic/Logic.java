@@ -1,7 +1,7 @@
 package com.marco.terminal.gameLogic;
 
-import com.marco.terminal.ui.Menu;
 import com.marco.terminal.ui.Layout;
+import com.marco.terminal.ui.Menu;
 
 /**
  * This is a class to handle the game's initial and check is the game over
@@ -9,6 +9,7 @@ import com.marco.terminal.ui.Layout;
 public class Logic {
     // Init other class
     Layout Layout = new Layout();
+    //Controller controller = new Controller(); Have error
 
     // public variable
     public int[][] grid;
@@ -130,6 +131,8 @@ public class Logic {
     private void gamePlaying() {
         assignNumber(grid);
         Layout.buildFrame(grid);
+        Controller controller = new Controller(); // This work fine
+        controller.getControl();
 
         if (isGameOver()) {
             Menu menu = new Menu();

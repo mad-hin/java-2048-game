@@ -56,9 +56,9 @@ public class Menu {
         }
     }
 
-    private void helpMessage() {
+    public void helpMessage() {
         inputAndOutput.outPutMessage("HOW TO PLAY:");
-        inputAndOutput.outPutMessage("Use your 'W', 'A', 'S', 'D' to move the tiles.");
+        inputAndOutput.outPutMessage("Use your 'W', 'A', 'S' or 'D' to move the tiles.");
         inputAndOutput.outPutMessage("Tiles with the same number merge into one when they touch.");
         inputAndOutput.outPutMessage("");
         inputAndOutput.outPutMessage("HOW TO WIN AND LOSE");
