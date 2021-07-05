@@ -33,6 +33,10 @@ public class Controller {
                     break loop;
                 }
                 case "h", "H" -> menu.helpMessage();
+                case "e", "E" -> {
+                    warning();
+                    break loop;
+                }
                 default -> inputAndOutput.outPutMessage("No such command, please enter 'W', 'A', 'S' or 'D' to move the tiles.");
             }
         }
@@ -52,5 +56,24 @@ public class Controller {
 
     private void moveRight() {
 
+    }
+
+    private void warning(){
+        warningLoop:
+        while (true){
+            inputAndOutput.outPutMessage("Are you sure to exit the game? [Y/n]");
+            String s = inputAndOutput.getInput();
+            switch (s) {
+                case "y", "Y", "" -> {
+                    menu.exitGame();
+                    break warningLoop;
+                }
+                case "n", "N" -> {
+                    getControl();
+                    break warningLoop;
+                }
+                default -> inputAndOutput.outPutMessage("No such command, please re-enter the correct command");
+            }
+        }
     }
 }
