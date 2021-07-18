@@ -11,6 +11,9 @@ public class Controller {
     //Logic logic = new Logic();
     Menu menu = new Menu();
 
+    /**
+     * Function to get the user input and preform move the blocks action
+     */
     public void getControl() {
         loop:
         while (true) {
@@ -58,6 +61,9 @@ public class Controller {
 
     }
 
+    /**
+     * Function to make sure the user want to exit the game when playing the game
+     */
     private void warning(){
         warningLoop:
         while (true){
@@ -74,6 +80,14 @@ public class Controller {
                 }
                 default -> inputAndOutput.outPutMessage("No such command, please re-enter the correct command");
             }
+        }
+    }
+
+    private int mergeBlocks(int bk1, int bk2){
+        if(bk1 == bk2) {
+            return bk1 + bk2;
+        }else{
+            return bk1;
         }
     }
 }
