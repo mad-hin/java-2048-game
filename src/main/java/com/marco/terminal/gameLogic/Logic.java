@@ -46,7 +46,7 @@ public class Logic {
     }
 
     // Choose generate 2 or 4 in the grid
-    private int twoOrFour() {
+    public int twoOrFour() {
         if ((int) (Math.random() * 10000000) % 2 == 0) {
             return 4;
         } else {
