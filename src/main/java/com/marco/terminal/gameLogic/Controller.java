@@ -21,22 +21,18 @@ public class Controller {
             switch (input) {
                 case "w", "W" -> {
                     moveUp();
-                    logic.twoOrFour();
                     break loop;
                 }
                 case "s", "S" -> {
                     moveDown();
-                    logic.twoOrFour();
                     break loop;
                 }
                 case "a", "A" -> {
                     moveLeft();
-                    logic.twoOrFour();
                     break loop;
                 }
                 case "d", "D" -> {
                     moveRight();
-                    logic.twoOrFour();
                     break loop;
                 }
                 case "h", "H" -> menu.helpMessage();

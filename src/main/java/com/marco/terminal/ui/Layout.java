@@ -51,8 +51,26 @@ public class Layout {
         }
     }
 
-    // Function to build the frame
-    public void buildFrame(int[][] grid){
-        // TODO draw the grid on console
+    /**
+     * Function to build the frame
+     *
+     * @param grid The grid with the values
+     */
+    public void buildFrame(int[][] grid) {
+        int edge = grid[0].length;
+        int cnt_I = 0, cnt_J = 0;
+        for (int i = 1; i <= edge * 3 + edge + 1; i++) {
+            for (int j = 1; j <= edge * 3 + edge + 1; j++) {
+                if (i == 1 || cnt_I % 4 == 0 || j == 1 || cnt_J == 3) {
+                    System.out.print('#');
+                    cnt_J = 0;
+                } else {
+                    System.out.print(' ');
+                    cnt_J++;
+                }
+            }
+            cnt_I++;
+            System.out.println();
+        }
     }
 }
