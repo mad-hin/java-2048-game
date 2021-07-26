@@ -6,6 +6,7 @@ import org.jline.terminal.TerminalBuilder;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * This class is for the output view
@@ -58,19 +59,73 @@ public class Layout {
      */
     public void buildFrame(int[][] grid) {
         int edge = grid[0].length;
-        int cnt_I = 0, cnt_J = 0;
-        for (int i = 1; i <= edge * 3 + edge + 1; i++) {
-            for (int j = 1; j <= edge * 3 + edge + 1; j++) {
-                if (i == 1 || cnt_I % 4 == 0 || j == 1 || cnt_J == 3) {
-                    System.out.print('#');
+        // use PrintWriter to print unicode
+        int x = 0, y = 0;
+        PrintWriter printWriter = new PrintWriter(System.out, true);
+        for (int i = 1; i <= edge * 2 + 1; i++) {
+            int cnt_J = 0;
+            for (int j = 1; j <= edge * 4 + edge + 1; j++) {
+                if (j == 1 && i == 1) {
+                    printWriter.print('\u250c'); // ┌
+                } else if (j == 1 && i == edge * 2 + 1) {
+                    printWriter.print('\u2514'); // └
+                } else if (i == 1 && j != edge * 4 + edge + 1 && cnt_J == 4) {
+                    printWriter.print('\u252c'); // ┬
                     cnt_J = 0;
-                } else {
-                    System.out.print(' ');
+                } else if (i == edge * 2 + 1 && cnt_J == 4 && j != edge * 4 + edge + 1) {
+                    printWriter.print('\u2534'); // ┴
+                    cnt_J = 0;
+                } else if (i % 2 == 0 && (cnt_J == 4 || j == 1)) {
+                    printWriter.print('\u2502'); // │
+                    cnt_J = 0;
+                } else if (j == edge * 4 + edge + 1 && i == 1) {
+                    printWriter.print('\u2510'); // ┐
+                } else if (j == edge * 4 + edge + 1 && i == edge * 2 + 1) {
+                    printWriter.print('\u2518');
+                } else if (i % 2 == 1) {
+                    if (cnt_J == 4 && j != edge * 4 + edge + 1) {
+                        printWriter.print('\u253c'); // ┼
+                        cnt_J = 0;
+                    } else if (j == 1) {
+                        printWriter.print('\u251c'); // ├
+                    } else if (j == edge * 4 + edge + 1) {
+                        printWriter.print('\u2524'); // ┤
+                    } else {
+                        printWriter.print('\u2500'); // ─
+                        cnt_J++;
+                    }
+                } else{
+                    printWriter.print('*');
                     cnt_J++;
                 }
             }
-            cnt_I++;
-            System.out.println();
+            printWriter.println();
         }
+    }
+
+    /**
+     * function to print the numbers with spaces
+     *
+     * @param num the number
+     *
+     */
+    private void printGridNumber(int num) {
+        int numSize = getNumSize(num);
+        StringBuilder s = new StringBuilder();
+        PrintWriter printWriter = new PrintWriter(System.out, true);
+        s.append(" ".repeat(Math.max(0, 4 - numSize)));
+        printWriter.print(s);
+        printWriter.print(num);
+    }
+
+    /**
+     * get the number of digits
+     *
+     * @param num
+     * @return
+     */
+    private int getNumSize(int num) {
+        Integer n = num;
+        return n.toString().length();
     }
 }
