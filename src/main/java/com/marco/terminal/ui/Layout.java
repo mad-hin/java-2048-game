@@ -94,9 +94,20 @@ public class Layout {
                         printWriter.print('\u2500'); // ─
                         cnt_J++;
                     }
-                } else{
-                    printWriter.print('*');
-                    cnt_J++;
+                } else {
+                    int d = getDigit(grid[x][y]);
+                    if (4 - d - cnt_J > 0) {
+                        printWriter.print(' ');
+                        cnt_J++;
+                    } else {
+                        printWriter.print(grid[x][y]);
+                        cnt_J += d;
+                        y++;
+                        if (y == edge) {
+                            x++;
+                            y = 0;
+                        }
+                    }
                 }
             }
             printWriter.println();
@@ -104,28 +115,12 @@ public class Layout {
     }
 
     /**
-     * function to print the numbers with spaces
-     *
-     * @param num the number
-     *
-     */
-    private void printGridNumber(int num) {
-        int numSize = getNumSize(num);
-        StringBuilder s = new StringBuilder();
-        PrintWriter printWriter = new PrintWriter(System.out, true);
-        s.append(" ".repeat(Math.max(0, 4 - numSize)));
-        printWriter.print(s);
-        printWriter.print(num);
-    }
-
-    /**
      * get the number of digits
      *
-     * @param num
-     * @return
+     * @param num the number in the grid
+     * @return the number of digits
      */
-    private int getNumSize(int num) {
-        Integer n = num;
-        return n.toString().length();
+    private int getDigit(int num) {
+        return Integer.toString(num).length();
     }
 }
