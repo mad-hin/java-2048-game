@@ -12,7 +12,7 @@ public class Logic {
     //Controller controller = new Controller(); Have error
 
     // public variable
-    public int[][] grid;
+    public static int[][] grid;
     public int dimension;
 
     // create the grid for the game
@@ -57,6 +57,8 @@ public class Logic {
     // Start game
     public void startGame() {
         assignNumber(grid);
+        assignNumber(grid);
+        Layout.buildFrame(grid);
         gamePlaying();
     }
 
@@ -128,17 +130,15 @@ public class Logic {
     /**
      * function to play the game after start up the game
      */
-    private void gamePlaying() {
-        assignNumber(grid);
-        Layout.buildFrame(grid);
+    public void gamePlaying() {
         Controller controller = new Controller(); // This work fine
-        controller.getControl();
-
-        if (isGameOver()) {
-            Menu menu = new Menu();
-            menu.gameover();
-        } else {
-            gamePlaying();
+        while (controller.getControl()) {
+            assignNumber(grid);
+            Layout.buildFrame(grid);
+            if (isGameOver()) {
+                Menu menu = new Menu();
+                menu.gameover();
+            }
         }
     }
 }

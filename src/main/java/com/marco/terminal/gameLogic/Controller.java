@@ -13,32 +13,32 @@ public class Controller {
 
     /**
      * Function to get the user input and preform move the blocks action
+     * @return boolean to let the program know is time to print out the grid
      */
-    public void getControl() {
-        loop:
+    public boolean getControl() {
         while (true) {
             String input = inputAndOutput.getInput();
             switch (input) {
                 case "w", "W" -> {
                     moveUp();
-                    break loop;
+                    return true;
                 }
                 case "s", "S" -> {
                     moveDown();
-                    break loop;
+                    return true;
                 }
                 case "a", "A" -> {
                     moveLeft();
-                    break loop;
+                    return true;
                 }
                 case "d", "D" -> {
                     moveRight();
-                    break loop;
+                    return true;
                 }
                 case "h", "H" -> menu.helpMessage();
                 case "e", "E" -> {
                     warning();
-                    break loop;
+                    return false;
                 }
                 default -> inputAndOutput.outPutMessage("No such command, please enter 'W', 'A', 'S' or 'D' to move the tiles.");
             }
@@ -51,10 +51,10 @@ public class Controller {
     private void moveUp() {
         for (int i = 0; i < logic.dimension; i++) {
             for (int r = 1; r <= logic.dimension - 1; r++) {
-                for (int c = 0; c < logic.grid[0].length; c++) {
-                    if (logic.grid[r][c] == logic.grid[r - 1][c] || logic.grid[r - 1][0] == 0) {
-                        logic.grid[r - 1][c] += logic.grid[r][c];
-                        logic.grid[r][c] = 0;
+                for (int c = 0; c < Logic.grid[0].length; c++) {
+                    if (Logic.grid[r][c] == Logic.grid[r - 1][c] || Logic.grid[r - 1][0] == 0) {
+                        Logic.grid[r - 1][c] += Logic.grid[r][c];
+                        Logic.grid[r][c] = 0;
                     }
                 }
             }
@@ -67,10 +67,10 @@ public class Controller {
     private void moveDown() {
         for (int i = 0; i < logic.dimension; i++) {
             for (int r = logic.dimension - 2; r >= 0; r--) {
-                for (int c = 0; c < logic.grid[0].length; c++) {
-                    if (logic.grid[r][c] == logic.grid[r + 1][c] || logic.grid[r + 1][c] == 0) {
-                        logic.grid[r + 1][c] += logic.grid[r][c];
-                        logic.grid[r][c] = 0;
+                for (int c = 0; c < Logic.grid[0].length; c++) {
+                    if (Logic.grid[r][c] == Logic.grid[r + 1][c] || Logic.grid[r + 1][c] == 0) {
+                        Logic.grid[r + 1][c] += Logic.grid[r][c];
+                        Logic.grid[r][c] = 0;
                     }
                 }
             }
@@ -82,11 +82,11 @@ public class Controller {
      */
     private void moveLeft() {
         for (int i = 0; i < logic.dimension; i++) {
-            for (int c = 1; c < logic.grid[0].length; c++) {
-                for (int r = 0; r < logic.grid.length; r++) {
-                    if (logic.grid[r][c] == logic.grid[r][c - 1] || logic.grid[r][c - 1] == 0) {
-                        logic.grid[r][c - 1] += logic.grid[r][c];
-                        logic.grid[r][c] = 0;
+            for (int c = 1; c < Logic.grid[0].length; c++) {
+                for (int r = 0; r < Logic.grid.length; r++) {
+                    if (Logic.grid[r][c] == Logic.grid[r][c - 1] || Logic.grid[r][c - 1] == 0) {
+                        Logic.grid[r][c - 1] += Logic.grid[r][c];
+                        Logic.grid[r][c] = 0;
                     }
                 }
             }
@@ -99,10 +99,10 @@ public class Controller {
     private void moveRight() {
         for (int i = 0; i < logic.dimension; i++) {
             for (int c = 2; c >= 0; c--) {
-                for (int r = 0; r < logic.grid.length; r++) {
-                    if (logic.grid[r][c] == logic.grid[r][c + 1] || logic.grid[r][c + 1] == 0) {
-                        logic.grid[r][c + 1] += logic.grid[r][c];
-                        logic.grid[r][c] = 0;
+                for (int r = 0; r < Logic.grid.length; r++) {
+                    if (Logic.grid[r][c] == Logic.grid[r][c + 1] || Logic.grid[r][c + 1] == 0) {
+                        Logic.grid[r][c + 1] += Logic.grid[r][c];
+                        Logic.grid[r][c] = 0;
                     }
                 }
             }
@@ -123,7 +123,7 @@ public class Controller {
                     break warningLoop;
                 }
                 case "n", "N" -> {
-                    getControl();
+                    logic.gamePlaying();
                     break warningLoop;
                 }
                 default -> inputAndOutput.outPutMessage("No such command, please re-enter the correct command");
