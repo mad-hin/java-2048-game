@@ -52,7 +52,7 @@ public class Controller {
         for (int i = 0; i < logic.dimension; i++) {
             for (int r = 1; r <= logic.dimension - 1; r++) {
                 for (int c = 0; c < Logic.grid[0].length; c++) {
-                    if (Logic.grid[r][c] == Logic.grid[r - 1][c] || Logic.grid[r - 1][0] == 0) {
+                    if (Logic.grid[r][c] == Logic.grid[r - 1][c] || Logic.grid[r - 1][c] == 0) {
                         Logic.grid[r - 1][c] += Logic.grid[r][c];
                         Logic.grid[r][c] = 0;
                     }
