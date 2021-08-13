@@ -1,5 +1,6 @@
 package com.marco.terminal.ui;
 
+import com.marco.terminal.gameLogic.Logic;
 import org.jline.terminal.Terminal;
 import org.jline.terminal.TerminalBuilder;
 
@@ -58,7 +59,7 @@ public class Layout {
      * @param grid The grid with the values
      */
     public void buildFrame(int[][] grid) {
-        int edge = grid[0].length;
+        int edge = Logic.dimension;
         // use PrintWriter to print unicode
         int x = 0, y = 0;
         PrintWriter printWriter = new PrintWriter(System.out, true);
@@ -95,18 +96,27 @@ public class Layout {
                         cnt_J++;
                     }
                 } else {
-                    int d = getDigit(grid[x][y]);
-                    if (4 - d - cnt_J > 0) {
-                        printWriter.print(' ');
-                        cnt_J++;
-                    } else {
-                        printWriter.print(grid[x][y]);
-                        cnt_J += d;
-                        y++;
-                        if (y == edge) {
-                            x++;
-                            y = 0;
+                    try {
+                        int d = getDigit(grid[x][y]);
+                        if (4 - d - cnt_J > 0) {
+                            printWriter.print(' ');
+                            cnt_J++;
+                        } else {
+                            printWriter.print(grid[x][y]);
+                            cnt_J += d;
+                            y++;
+                            if (y == edge) {
+                                x++;
+                                y = 0;
+                            }
+                            if (x == edge){
+                                x = 0;
+                            }
                         }
+                    } catch (Exception e) {
+                        printWriter.println(x);
+                        printWriter.println(y);
+                        printWriter.println(e);
                     }
                 }
             }

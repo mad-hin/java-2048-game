@@ -49,9 +49,9 @@ public class Controller {
      * Function to move the value in the grid up and sum up the same number
      */
     private void moveUp() {
-        for (int i = 0; i < logic.dimension; i++) {
-            for (int r = 1; r <= logic.dimension - 1; r++) {
-                for (int c = 0; c < Logic.grid[0].length; c++) {
+        for (int i = 0; i < Logic.dimension; i++) {
+            for (int r = 1; r <= Logic.dimension - 1; r++) {
+                for (int c = 0; c < Logic.dimension; c++) {
                     if (Logic.grid[r][c] == Logic.grid[r - 1][c] || Logic.grid[r - 1][c] == 0) {
                         Logic.grid[r - 1][c] += Logic.grid[r][c];
                         Logic.grid[r][c] = 0;
@@ -65,9 +65,9 @@ public class Controller {
      * Function to move the values in the grid down and sum up the same number
      */
     private void moveDown() {
-        for (int i = 0; i < logic.dimension; i++) {
-            for (int r = logic.dimension - 2; r >= 0; r--) {
-                for (int c = 0; c < Logic.grid[0].length; c++) {
+        for (int i = 0; i < Logic.dimension; i++) {
+            for (int r = Logic.dimension - 2; r >= 0; r--) {
+                for (int c = 0; c < Logic.dimension; c++) {
                     if (Logic.grid[r][c] == Logic.grid[r + 1][c] || Logic.grid[r + 1][c] == 0) {
                         Logic.grid[r + 1][c] += Logic.grid[r][c];
                         Logic.grid[r][c] = 0;
@@ -81,9 +81,9 @@ public class Controller {
      * Function to move the values in the grid left and sum up the same number
      */
     private void moveLeft() {
-        for (int i = 0; i < logic.dimension; i++) {
-            for (int c = 1; c < Logic.grid[0].length; c++) {
-                for (int r = 0; r < Logic.grid.length; r++) {
+        for (int i = 0; i < Logic.dimension; i++) {
+            for (int c = 1; c < Logic.dimension; c++) {
+                for (int r = 0; r < Logic.dimension; r++) {
                     if (Logic.grid[r][c] == Logic.grid[r][c - 1] || Logic.grid[r][c - 1] == 0) {
                         Logic.grid[r][c - 1] += Logic.grid[r][c];
                         Logic.grid[r][c] = 0;
@@ -97,9 +97,9 @@ public class Controller {
      * Function to move the values in the grid right and sum up the same number
      */
     private void moveRight() {
-        for (int i = 0; i < logic.dimension; i++) {
+        for (int i = 0; i < Logic.dimension; i++) {
             for (int c = 2; c >= 0; c--) {
-                for (int r = 0; r < Logic.grid.length; r++) {
+                for (int r = 0; r < Logic.dimension; r++) {
                     if (Logic.grid[r][c] == Logic.grid[r][c + 1] || Logic.grid[r][c + 1] == 0) {
                         Logic.grid[r][c + 1] += Logic.grid[r][c];
                         Logic.grid[r][c] = 0;

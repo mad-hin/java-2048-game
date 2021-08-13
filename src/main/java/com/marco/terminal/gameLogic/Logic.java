@@ -13,7 +13,7 @@ public class Logic {
 
     // public variable
     public static int[][] grid;
-    public int dimension;
+    public static int dimension;
 
     // create the grid for the game
     public void creatGrid(int size) {
@@ -27,9 +27,9 @@ public class Logic {
 
     // Assign random number to the grid
     public void assignNumber(int[][] grid) {
-        int assignPlace = (int) (Math.random() * (grid.length * grid.length));
         boolean haveNotAssign = true;
         while (haveNotAssign) {
+            int assignPlace = (int) (Math.random() * (grid.length * grid.length));
             int cnt = 0;
             for (int i = 0; i < dimension; i++) {
                 for (int j = 0; j < dimension; j++) {
