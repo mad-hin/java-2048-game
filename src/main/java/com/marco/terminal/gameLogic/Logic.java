@@ -77,6 +77,9 @@ public class Logic {
                 if (grid[i][j] != 0 && grid[i][j + 1] == 0) {
                     return true;
                 }
+                if (grid[i][j] == grid[i][j + 1]) {
+                    return true;
+                }
             }
         }
         return false;
@@ -90,6 +93,9 @@ public class Logic {
                     return true;
                 }
                 if (grid[i][j] != 0 && grid[i][j - 1] == 0) {
+                    return true;
+                }
+                if (grid[i][j] == grid[i][j - 1]) {
                     return true;
                 }
             }
@@ -107,6 +113,9 @@ public class Logic {
                 if (grid[i][j] != 0 && grid[i + 1][j] == 0) {
                     return true;
                 }
+                if (grid[i][j] == grid[i + 1][j]) {
+                    return true;
+                }
             }
         }
         return false;
@@ -120,6 +129,9 @@ public class Logic {
                     return true;
                 }
                 if (grid[i][j] != 0 && grid[i - 1][j] == 0) {
+                    return true;
+                }
+                if (grid[i][j] == grid[i - 1][j]) {
                     return true;
                 }
             }
